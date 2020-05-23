@@ -15,7 +15,7 @@ This is the backend for the Food Truck Tracker web application.
   - Base URL: TBD
 
 ## Database Schema
-![initial schema draft](/backend/schema_v00.png)
+![initial schema draft v01](/backend/schema_v01.png)
 
 ## API Information
 
