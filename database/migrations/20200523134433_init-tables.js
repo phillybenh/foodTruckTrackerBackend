@@ -19,7 +19,13 @@ exports.up = function (knex) {
                 .inTable('users')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
-            tbl.string('currentLocation', 255).notNullable();
+            tbl.string('firstName', 255);
+            tbl.string('lastName', 255);
+            tbl.string('profileImageUrl', 255);
+            tbl.string('currentStreetAddress', 255).notNullable();
+            tbl.string('currentCity', 255).notNullable();
+            tbl.string('currentState', 255).notNullable();
+            tbl.integer('currentZipCode', 255).notNullable();
             tbl.integer('radSize').defaultTo(5).notNullable(); // for local truck searching in miles
             tbl.string('bio')
         })
@@ -90,9 +96,16 @@ exports.up = function (knex) {
                 .inTable('trucks')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE'); // owners id
-            tbl.string('currentLocation', 255).notNullable();
-            tbl.datetime('currentDepartureTime').notNullable();
-            tbl.string('nextLocation', 255);
+            tbl.string('currentLocationDescription', 255);
+            tbl.string('currentStreetAddress', 255).notNullable();
+            tbl.string('currentCity', 255).notNullable();
+            tbl.string('currentState', 255).notNullable();
+            tbl.integer('currentZipCode', 255).notNullable(); tbl.datetime('currentDepartureTime').notNullable();
+            tbl.string('nextLocationDescription', 255);
+            tbl.string('nextStreetAddress', 255);
+            tbl.string('nextCity', 255);
+            tbl.string('nextState', 255);
+            tbl.integer('nextZipCode', 255)
             tbl.datetime('nextArrivalTime');
             tbl.datetime('nextDepartureTime');
         })
