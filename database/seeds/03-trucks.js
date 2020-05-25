@@ -5,14 +5,14 @@ exports.seed = function (knex) {
       // Inserts seed entries
       return knex('trucks').insert([
         {
-          user_id: 1,
+          user_id: 2,
           truckName: 'Grilled Cheese Truck',
           imageOfTruck: "https://images.unsplash.com/photo-1513640127641-49ba81f8305c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
           cuisineType: 'sammy',
           customerRatingAvg: 78.3
         },
         {
-          user_id: 1,
+          user_id: 4,
           truckName: 'Soup to Go!',
           imageOfTruck: "https://images.unsplash.com/photo-1509315811345-672d83ef2fbc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80.",
           cuisineType: 'soup',

@@ -1,0 +1,74 @@
+const db = require('../../database/dbConfig');
+
+module.exports = {
+    add,
+    find,
+    findDiners,
+    findOperators,
+    findBy,
+    findById,
+};
+
+function find() {
+    return db("users as u")
+        .fullOuterJoin("dinerProfile as dp", "u.id", "dp.user_id")
+        .fullOuterJoin("trucks as t", "u.id", "t.user_id")
+        // .fullOuterJoin("diner_trucks as dt", "dp.id", "dt.profile_id")
+        .select("u.id", "u.username", "u.email", "u.operator", "t.truckName", "u.diner", "dp.firstName", "dp.lastName", "dp.profileImageUrl", "dp.currentStreetAddress", "dp.currentCity", "dp.currentState", "dp.currentZipCode", "dp.radSize", "dp.bio")
+
+}
+function findDiners() {
+    return db("users as u")
+        .fullOuterJoin("dinerProfile as dp", "u.id", "dp.user_id")
+        .where("u.diner", true)
+        .select("u.id", "u.username", "u.email", "u.operator", "u.diner", "dp.firstName", "dp.lastName", "dp.profileImageUrl", "dp.currentStreetAddress", "dp.currentCity", "dp.currentState", "dp.currentZipCode", "dp.radSize", "dp.bio")
+}
+function findOperators() {
+    return db("users as u")
+        // .fullOuterJoin("dinerProfile as dp", "u.id", "dp.user_id")
+        .fullOuterJoin("trucks as t", "u.id", "t.user_id")
+        .where("u.operator", true)
+        .select("u.id", "u.username", "u.email", "u.operator", "t.truckName")
+}
+
+
+function findBy(filter) {
+    // console.log("filter", filter);
+    return db("users as u")
+        .where(filter)
+        .select("u.id", "u.username", "u.password")
+        .orderBy("u.id");
+}
+
+async function add(user) {
+    try {
+        const [id] = await db("users").insert(user, "id");
+
+        return findById(id);
+    } catch (error) {
+        throw error;
+    }
+}
+
+function findById(id) {
+    return db("users").where({ id }).first();
+}
+
+/*
+function insert(action) {
+  return db('actions')
+    .insert(action, 'id')
+    .then(([id]) => get(id));
+}
+
+function update(id, changes) {
+  return db('actions')
+    .where('id', id)
+    .update(changes)
+    .then((count) => (count > 0 ? get(id) : null));
+}
+
+function remove(id) {
+  return db('actions').where('id', id).del();
+}
+*/

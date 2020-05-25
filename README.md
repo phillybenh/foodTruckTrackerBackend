@@ -1,9 +1,11 @@
 # Food Truck Tracker
+
 ### Lambda School Build-week Project
 
-This is the backend for the Food Truck Tracker web application. 
+This is the backend for the Food Truck Tracker web application.
 
 ## The Food Truck Tracker Project:
+
 - Marketing Page:
   - Repo: https://github.com/2foodtrucktrackr/marketing
   - Deployed: TBD
@@ -15,8 +17,37 @@ This is the backend for the Food Truck Tracker web application.
   - Base URL: TBD
 
 ## Database Schema
-![initial schema draft v01](https://lh3.googleusercontent.com/tc8sXKZdUyU2ZuAoBURNOCWWef28MMKrhza3vDecb8VuqWJc1N4F_Jdvzb6Idz0ZMpvVqYeJMcYs8T0qJZ8T9rdR-svTHJ15ZLHZEQZ01BnWRuM0srFFjdMPOwHryXHwUz9qq7HjEtux1DvZZE1xjoX1CsB8iP_sOcFMrwQckEKKgGcNsJRimOGQW7wLJHPjfvy3l_qOIsUCe8oa74gVKiQj77p2iSNi6qeNGiIwcdxfrL7pGBF3uBCjbtj8nEOByDgbik85Np_kRFOFfMQhYcK22RoZ5mqob15pnXoWcS6cM1Szxu1_6qQU0ck0w6Hlq7Ir1PIvguBGPp9eVQD3Mwjz_SYU3X80kw1bFWx95Y0yWBWpiNN54483OIaP7EnEEfwZnFPAgZL-y-ND-So48FSfhvDQag4GYvUK2eYmZRsK4PBLmmWAbbbbVfdgU1Xisq_QnQ_0nGzVFEttlbNV9FtLTSRSJ9bCVvi8AJQ-xfJd5hqZPVH4aGgUtpWuSZ8Qijq8mS0N-MbOs3t0KvLr7oHxgHdykcyb0dR65r4JhUOu3HrR2vrcGoR294DfBd7j2epGH119fphEA5g9PQ4RZUqw7V8A-yes43sNJibkra7P16E4OW99hB3asgMFdOReN-WLpMb8utI8jCHLfIvkzGg5NQxbmP2yPJ19LR9qbiqhFIfXWICqdy7HMnvNjQ=w1293-h1044-no?authuser=0 "Food Truck Tracker Schema")
+
+![initial schema draft](https://lh3.googleusercontent.com/pw/ACtC-3eygg48nsFTMv7iBopuWGQyEPbGPucsBfDqWpL039s0NmEPQcWhyQemo4o_YPq-4o0PSXZ8eSZT6V_YgsJFnUfR9KY4D98H5a1pPDuw4Sp7vObdXtUAaFBqHXG2K-rEfEhqSD62wGZSdfQY9Of1-_K-wA=w1293-h1044-no?authuser=0 "Food Truck Tracker Schema")
 
 ## API Information
 
+- User registration JSON object example:
+`{ "username": "uniqueUser", "password": "passwordString", "email": "email@address.com", "operator": false, "diner": true }`
+<!-- ✅ -->
+
 ### Endpoints
+
+| ACCESS        | Method | URL           | TESTED |
+| :------------ | :----- | :------------ | :----- |
+| Login as user | POST   | /api/login    |        |
+| Add a user    | POST   | /api/register |        |
+
+| USERS                   | Method | URL                           | TESTED |
+| :---------------------- | :----- | :---------------------------- | :----- |
+| Get a list of users     | GET    | /api/users                    |        |
+| Get a list of diners    | GET    | /api/users/diners             |        |
+| Get a list of operators | GET    | /api/users/operators          |        |
+| Add a user profile      | POST   | /api/users/:id                |        |
+| Get a user profile      | GET    | /api/users/:id                |        |
+| Edit a user profile     | PUT    | /api/users/:id                |        |
+| Delete a user           | DELETE | /api/users/:id                |        |
+| Get a favorite trucks   | GET    | /api/users/:id/favoriteTrucks |        |
+| Get a owned trucks      | GET    | /api/users/:id/trucksOwned    |        |
+
+| TRUCKS         | Method | URL                  | TESTED |
+| :------------- | :----- | :------------------- | :----- |
+| Get trucks     | GET    | /api/trucks          |        |
+| Query trucks   | GET    | -- TO DO --          |        |
+| Get truck      | GET    | /api/trucks/:id      |        |
+| Get truck menu | GET    | /api/trucks/:id/menu |        |
