@@ -1,9 +1,11 @@
 # Food Truck Tracker
+
 ### Lambda School Build-week Project
 
-This is the backend for the Food Truck Tracker web application. 
+This is the backend for the Food Truck Tracker web application.
 
 ## The Food Truck Tracker Project:
+
 - Marketing Page:
   - Repo: https://github.com/2foodtrucktrackr/marketing
   - Deployed: TBD
@@ -15,8 +17,32 @@ This is the backend for the Food Truck Tracker web application.
   - Base URL: TBD
 
 ## Database Schema
+
 ![initial schema draft](https://lh3.googleusercontent.com/pw/ACtC-3eygg48nsFTMv7iBopuWGQyEPbGPucsBfDqWpL039s0NmEPQcWhyQemo4o_YPq-4o0PSXZ8eSZT6V_YgsJFnUfR9KY4D98H5a1pPDuw4Sp7vObdXtUAaFBqHXG2K-rEfEhqSD62wGZSdfQY9Of1-_K-wA=w1293-h1044-no?authuser=0 "Food Truck Tracker Schema")
 
 ## API Information
 
+<!-- ✅ -->
+
 ### Endpoints
+
+| ACCESS        | Method | URL           | TESTED |
+| :------------ | :----- | :------------ | :----- |
+| Login as user | POST   | /api/login    |        |
+| Add a user    | POST   | /api/register |        |
+
+| USERS                                                | Method | URL                           | TESTED |
+| :--------------------------------------------------- | :----- | :---------------------------- | :----- |
+| Get a list of users                                  | GET    | /api/users                    |        |
+| Get a user                                           | POST   | /api/users/:id                |        |
+| Edit a user (including fav. trucks and trucks owned) | PUT    | /api/users/:id                |        |
+| Delete a user                                        | DELETE | /api/users/:id                |        |
+| Get a favorite trucks                                | GET    | /api/users/:id/favoriteTrucks |        |
+| Get a owned trucks                                   | GET    | /api/users/:id/trucksOwned    |        |
+
+| TRUCKS         | Method | URL                  | TESTED |
+| :------------- | :----- | :------------------- | :----- |
+| Get trucks     | GET    | /api/trucks          |        |
+| Query trucks   | GET    | -- TO DO --          |        |
+| Get truck      | GET    | /api/trucks/:id      |        |
+| Get truck menu | GET    | /api/trucks/:id/menu |        |
