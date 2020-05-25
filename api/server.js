@@ -6,7 +6,7 @@ const helmet = require('helmet');
 
 const authenticate = require('../api/auth/authenticationMiddleware');
 const authRouter = require('../api/auth/authRouter');
-// const usersRouter = require('../api/users/usersRouter');
+const usersRouter = require('../api/users/usersRouter');
 // const trucksRouter = require('../api/trucks/trucksRouter');
 
 const server = express();
@@ -17,7 +17,7 @@ server.use(express.json());
 
 server.use('/api', authRouter);
 // server.use('/api/jokes', authenticate, jokesRouter);/////////
-// server.use("/api/users/", usersRouter);
+server.use("/api/users/", usersRouter);
 // server.use('/api/trucks/', trucksRouter);
 
 

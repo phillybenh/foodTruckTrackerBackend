@@ -2,7 +2,7 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const router = require('express').Router();
 
-const Users = require("./authModel");
+const Auth = require("./authModel");
 const { isValidReg, isValidLogin, isUnique, createToken } = require("./authServices");
 const configVars = require("../../config/vars.js");
 
@@ -10,7 +10,7 @@ const configVars = require("../../config/vars.js");
 //this isn't the endpoint you're looking for
 router.get("/", (req, res) => {
     // res.status(200).json({ api: "up" });
-    Users.find()
+    Auth.find()
         .then(user => {
             res.status(201).json({ data: user });
         })
@@ -30,7 +30,7 @@ router.post('/register', isValidReg, isUnique, (req, res) => {
     credentials.password = hash;
 
     // save the user to the database
-    Users.add(credentials)
+    Auth.add(credentials)
         .then(user => {
             res.status(201).json({ data: user });
         })
@@ -43,7 +43,7 @@ router.post('/register', isValidReg, isUnique, (req, res) => {
 router.post('/login', isValidLogin, (req, res) => {
     const { username, password } = req.body;
 
-    Users.findBy({ username: username })
+    Auth.findBy({ username: username })
         .then(([user]) => {
             // compare the password the hash stored in the database
             if (user && bcryptjs.compareSync(password, user.password)) {

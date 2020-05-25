@@ -21,16 +21,9 @@ This is the backend for the Food Truck Tracker web application.
 ![initial schema draft](https://lh3.googleusercontent.com/pw/ACtC-3eygg48nsFTMv7iBopuWGQyEPbGPucsBfDqWpL039s0NmEPQcWhyQemo4o_YPq-4o0PSXZ8eSZT6V_YgsJFnUfR9KY4D98H5a1pPDuw4Sp7vObdXtUAaFBqHXG2K-rEfEhqSD62wGZSdfQY9Of1-_K-wA=w1293-h1044-no?authuser=0 "Food Truck Tracker Schema")
 
 ## API Information
- - User registration JSON object example:
-    ```
-    {
-    "username": "uniqueUser",
-    "password": "passwordString",
-    "email": "email@address.com",
-    "operator": false,
-    "diner": true
-    }
-    ```
+
+- User registration JSON object example:
+`{ "username": "uniqueUser", "password": "passwordString", "email": "email@address.com", "operator": false, "diner": true }`
 <!-- ✅ -->
 
 ### Endpoints
@@ -40,16 +33,17 @@ This is the backend for the Food Truck Tracker web application.
 | Login as user | POST   | /api/login    |        |
 | Add a user    | POST   | /api/register |        |
 
-| USERS                                                | Method | URL                           | TESTED |
-| :--------------------------------------------------- | :----- | :---------------------------- | :----- |
-| Get a list of users                                  | GET    | /api/users                    |        |
-| Get a list of diners                                 | GET    | /api/users/diners             |        |
-| Get a list of operators                              | GET    | /api/users/operators          |        |
-| Get a user                                           | POST   | /api/users/:id                |        |
-| Edit a user (including fav. trucks and trucks owned) | PUT    | /api/users/:id                |        |
-| Delete a user                                        | DELETE | /api/users/:id                |        |
-| Get a favorite trucks                                | GET    | /api/users/:id/favoriteTrucks |        |
-| Get a owned trucks                                   | GET    | /api/users/:id/trucksOwned    |        |
+| USERS                   | Method | URL                           | TESTED |
+| :---------------------- | :----- | :---------------------------- | :----- |
+| Get a list of users     | GET    | /api/users                    |        |
+| Get a list of diners    | GET    | /api/users/diners             |        |
+| Get a list of operators | GET    | /api/users/operators          |        |
+| Add a user profile      | POST   | /api/users/:id                |        |
+| Get a user profile      | GET    | /api/users/:id                |        |
+| Edit a user profile     | PUT    | /api/users/:id                |        |
+| Delete a user           | DELETE | /api/users/:id                |        |
+| Get a favorite trucks   | GET    | /api/users/:id/favoriteTrucks |        |
+| Get a owned trucks      | GET    | /api/users/:id/trucksOwned    |        |
 
 | TRUCKS         | Method | URL                  | TESTED |
 | :------------- | :----- | :------------------- | :----- |
