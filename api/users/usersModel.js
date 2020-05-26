@@ -10,7 +10,6 @@ module.exports = {
     insert,
     update,
     remove,
-    // favNums,
     favTrucks,
     findTrucks
 };

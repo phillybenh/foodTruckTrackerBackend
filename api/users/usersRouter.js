@@ -2,7 +2,6 @@ const router = require('express').Router();
 
 const Users = require("./usersModel");
 const { isValidProf, isValidDel } = require("./usersServices");
-const configVars = require("../../config/vars.js");
 
 
 // Get a list of users	GET	/api/users
@@ -86,7 +85,7 @@ router.put('/:id', isValidProf, (req, res) => {
 });
 
 // Delete a user	DELETE	/api/users/:id
-router.delete('/:id', (req, res) => {
+router.delete('/:id', isValidDel, (req, res) => {
     const { id } = req.params;
 
     Users.remove(id)
@@ -107,7 +106,6 @@ router.get('/:id/favoriteTrucks', (req, res) => {
     const { id } = req.params;
     Users.favTrucks(id)
         .then(trucks => {
-            console.log(trucks)
             res.status(200).json({ data: trucks });
         })
         .catch(error => {
