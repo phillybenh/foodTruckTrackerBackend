@@ -24,14 +24,14 @@ function isValidReg(req, res, next) {
         res.status(400).json({
             message: "Please provide a valid email address.",
         });
-    } else if (typeof reg.operator !== "boolean") {
+    } else if ( !reg.operator && !reg.diner) {
         res.status(400).json({
-            message: "Please provide a valid operator status.",
+            message: "Please provide a valid user role.",
         });
-    } else if (typeof reg.diner !== "boolean") {
-        res.status(400).json({
-            message: "Please provide a valid diner status.",
-        });
+    // } else if (typeof reg.diner !== "boolean") {
+    //     res.status(400).json({
+    //         message: "Please provide a valid diner status.",
+    //     });
     } else {
         next();
     }

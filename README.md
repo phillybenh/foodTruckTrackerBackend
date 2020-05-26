@@ -23,7 +23,30 @@ This is the backend for the Food Truck Tracker web application.
 ## API Information
 
 - User registration JSON object example:
-`{ "username": "uniqueUser", "password": "passwordString", "email": "email@address.com", "operator": false, "diner": true }`
+  ```
+  { 
+    "username": "uniqueUser", 
+    "password": "passwordString", 
+    "email": "email@address.com", 
+    "operator": false, 
+    "diner": true 
+  }
+  ```
+
+- User profile JSON object example:
+  ```
+  { 
+    "firstName": "First", 
+    "lastName": "Last", 
+    "profileImageUrl": "string", // or null
+    "currentStreetAddress": "123 Profile St.", 
+    "currentCity": "Profileville",
+    "currentState": "PA", 
+    "currentZipCode": 19147, 
+    "radSize": 6, 
+    "bio": "string" // or null
+  }
+  ```
 <!-- ✅ -->
 
 ### Endpoints
