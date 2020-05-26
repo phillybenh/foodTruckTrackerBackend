@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const Users = require("./usersModel");
-// const { isValidReg, isValidLogin, isUnique, createToken } = require("./authServices");
+const { isValidProf} = require("./usersServices");
 const configVars = require("../../config/vars.js");
 
 
@@ -38,6 +38,18 @@ router.get("/:id", (req, res) => {
     const { id } = req.params;
 
     Users.findById(id)
+        .then(users => {
+            res.status(200).json({ data: users });
+        })
+        .catch(error => {
+            res.status(500).json({ message: error.message });
+        });
+});
+
+router.post("/:id", isValidProf, (req, res) => {
+    const { id } = req.params;
+    const profile = req.body;
+    Users.insert(profile, id)
         .then(users => {
             res.status(200).json({ data: users });
         })

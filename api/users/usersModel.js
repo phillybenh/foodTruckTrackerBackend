@@ -7,6 +7,7 @@ module.exports = {
     findOperators,
     findBy,
     findById,
+    insert
 };
 
 function find() {
@@ -54,18 +55,19 @@ function findById(id) {
         .fullOuterJoin("dinerProfile as dp", "u.id", "dp.user_id")
         .fullOuterJoin("trucks as t", "u.id", "t.user_id")
         // .fullOuterJoin("diner_trucks as dt", "dp.id", "dt.profile_id")
-        .select("u.id", "u.username", "u.email", "u.operator", "t.truckName", "u.diner", "dp.firstName", "dp.lastName", "dp.profileImageUrl", "dp.currentStreetAddress", "dp.currentCity", "dp.currentState", "dp.currentZipCode", "dp.radSize", "dp.bio")
+        .select("u.id as user_id", "u.username", "u.email", "u.operator", "t.truckName", "u.diner", "dp.firstName", "dp.lastName", "dp.profileImageUrl", "dp.currentStreetAddress", "dp.currentCity", "dp.currentState", "dp.currentZipCode", "dp.radSize", "dp.bio")
     .where("u.id", id)
     .first();
 }
 
-/*
-function insert(action) {
-  return db('actions')
-    .insert(action, 'id')
-    .then(([id]) => get(id));
-}
 
+function insert(profile, user_id) {
+    profile.user_id = user_id
+  return db('dinerProfile')
+    .insert(profile, 'id')
+      .then(([id]) => findById(id));
+}
+/*
 function update(id, changes) {
   return db('actions')
     .where('id', id)
