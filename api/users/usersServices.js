@@ -3,7 +3,8 @@ const configVars = require("../../config/vars");
 
 
 module.exports = {
-    isValidProf
+    isValidProf,
+    isValidDel
 };
 
 function isValidProf(req, res, next) {
@@ -13,7 +14,7 @@ function isValidProf(req, res, next) {
     var decoded = jwt.decode(token);
 
     if (decoded.sub != user_id) {
-        res.status(400).json({
+        res.status(401).json({
             message: "Please user ID does not match Token ID. You may only edit your own profile. ",
         });
     } else if (!profile.currentStreetAddress || !profile.currentCity || !profile.currentState || !profile.currentZipCode) {
@@ -23,6 +24,19 @@ function isValidProf(req, res, next) {
     } else {
         next();
     }
+}
 
+function isValidDel(req, res, next) {
+    const profile = req.body;
+    const user_id = req.params.id;
+    const token = req.headers.authorization;
+    var decoded = jwt.decode(token);
 
+    if (decoded.sub != user_id) {
+        res.status(401).json({
+            message: "Please user ID does not match Token ID. You may only edit your own profile. ",
+        });
+    } else {
+        next();
+    }
 }
