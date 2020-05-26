@@ -14,7 +14,7 @@ This is the backend for the Food Truck Tracker web application.
   - Deployed: TBD
 - Backend:
   - Repo: https://github.com/2foodtrucktrackr/backend
-  - Base URL: TBD
+  - Base URL: https://foodspy.herokuapp.com/
 
 ## Database Schema
 
