@@ -8,16 +8,16 @@ const configVars = require("../../config/vars.js");
 
 
 //this isn't the endpoint you're looking for
-router.get("/", (req, res) => {
-    // res.status(200).json({ api: "up" });
-    Auth.find()
-        .then(user => {
-            res.status(201).json({ data: user });
-        })
-        .catch(error => {
-            res.status(500).json({ message: error.message });
-        });
-});
+// router.get("/", (req, res) => {
+//     // res.status(200).json({ api: "up" });
+//     Auth.find()
+//         .then(user => {
+//             res.status(201).json({ data: user });
+//         })
+//         .catch(error => {
+//             res.status(500).json({ message: error.message });
+//         });
+// });
 
 router.post('/register', isValidReg, isUnique, (req, res) => {
     const credentials = req.body;

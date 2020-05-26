@@ -34,4 +34,16 @@ router.get("/operators", (req, res) => {
         });
 });
 
+router.get("/:id", (req, res) => {
+    const { id } = req.params;
+
+    Users.findById(id)
+        .then(users => {
+            res.status(200).json({ data: users });
+        })
+        .catch(error => {
+            res.status(500).json({ message: error.message });
+        });
+});
+
 module.exports = router;
