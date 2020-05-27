@@ -2,6 +2,7 @@ const db = require('../../database/dbConfig');
 
 module.exports = {
     find,
+    findQuery,
     findBy,
     findById,
     findMenuById,
@@ -17,7 +18,12 @@ module.exports = {
 function find() {
     return db("trucks as t")
         .select("t.id as truck_id", "t.user_id as operator_id", "t.truckName", "t.imageOfTruck", "t.cuisineType", "t.customerRatingAvg")
+}
 
+function findQuery(query) {
+    return db("trucks as t")
+        .select("t.id as truck_id", "t.user_id as operator_id", "t.truckName", "t.imageOfTruck", "t.cuisineType", "t.customerRatingAvg")
+        .where(query)
 }
 
 function findBy(filter) {
@@ -87,7 +93,12 @@ function remove(id) {
                 .where("t.id", id)
                 .del()
                 .then(res => {
-                    return delObj;
+                    return db("menus as m")
+                        .where("m.truck_id", id)
+                        .del()
+                        .then(res => {
+                            return delObj;
+                        });
                 });
         })
 };

@@ -17,6 +17,11 @@ router.post("/", isValidTruck, isUnique, (req, res) => {
 
 // Get trucks	GET / api / trucks
 router.get("/", (req, res) => {
+    const query = req.query;
+    console.log(query)
+
+    if (Object.keys(query).length === 0) {
+
     Trucks.find()
         .then(trucks => {
             res.status(200).json({ data: trucks });
@@ -24,6 +29,21 @@ router.get("/", (req, res) => {
         .catch(error => {
             res.status(500).json({ message: error.message });
         });
+    } else{
+        console.log(query)
+        Trucks.findQuery(query)
+            .then(trucks => {
+                if (trucks) {
+                    res.status(200).json({ data: trucks })
+                } else {
+                    res.status(404).json({ message: "No trucks match your query." })
+                }
+            })
+            .catch(error => {
+                console.log(error)
+                res.status(500).json({ message: error.message })
+            });
+    }
 });
 
 // Query trucks	GET-- TO DO--

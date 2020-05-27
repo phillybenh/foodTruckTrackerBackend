@@ -22,32 +22,57 @@ This is the backend for the Food Truck Tracker web application.
 
 ## API Information
 
-- User registration JSON object example:
+ - To return food trucks of a specific cusine type, use a query string in the URL, example:
+    `/api/trucks?cuisineType=soup`
+    
+ - User registration POST request JSON object example:
 
-  ```
-  {
-    "username": "uniqueUser",
-    "password": "passwordString",
-    "email": "email@address.com",
-    "operator": false,
-    "diner": true
-  }
-  ```
+    ```
+    {
+      "username": "uniqueUser",
+      "password": "passwordString",
+      "email": "email@address.com",
+      "operator": false,
+      "diner": true
+    }
+    ```
 
-- User profile JSON object example:
-  ```
-  {
-    "firstName": "First",
-    "lastName": "Last",
-    "profileImageUrl": "string", // or null
-    "currentStreetAddress": "123 Profile St.",
-    "currentCity": "Profileville",
-    "currentState": "PA",
-    "currentZipCode": 19147,
-    "radSize": 6,
-    "bio": "string" // or null
-  }
-  ```
+ - User profile POST request JSON object example:
+    ```
+    {
+      "firstName": "First",
+      "lastName": "Last",
+      "profileImageUrl": "string", // or null
+      "currentStreetAddress": "123 Profile St.",
+      "currentCity": "Profileville",
+      "currentState": "PA",
+      "currentZipCode": 19147,
+      "radSize": 6,
+      "bio": "string" // or null
+    }
+    ```
+
+ - Food truck POST request JASON object example:
+    ```
+    {
+      "user_id": 10,
+      "truckName": "Truck Name String",
+      "imageOfTruck": "URL string", // can be null
+      "cuisineType": "cuisine string"
+    } 
+    ```
+
+ - Menu item POST request JSON object example:
+    ```
+    {
+    "itemName": "Item Name String!",
+    "itemDescription": "Item description string",	
+    "itemPhotos": "URL String", // or null	
+    "itemPrice": 4.88,	// numer required
+    "customerRatings": [66, 78, 74],	// or null
+    "customerRatingAvg: 72.6667 // or null
+    }
+    ```
   <!-- ✅ -->
 
 ### Endpoints
@@ -73,7 +98,6 @@ This is the backend for the Food Truck Tracker web application.
 | :---------------- | :----- | :---------------------------- | :----- |
 | Add truck         | POST   | /api/trucks                   |        |
 | Get trucks        | GET    | /api/trucks                   |        |
-| Query trucks      | GET    | -- TO DO --                   |        |
 | Get truck         | GET    | /api/trucks/:id               |        |
 | Edit truck        | PUT    | /api/trucks/:id               |        |
 | Delete trucks     | DELETE | /api/trucks/:id               |        |
