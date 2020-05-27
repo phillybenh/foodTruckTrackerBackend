@@ -69,14 +69,15 @@ This is the backend for the Food Truck Tracker web application.
 | Get a favorite trucks   | GET    | /api/users/:id/favoriteTrucks |        |
 | Get a owned trucks      | GET    | /api/users/:id/trucksOwned    |        |
 
-| TRUCKS          | Method | URL                  | TESTED |
-| :-------------- | :----- | :------------------- | :----- |
-| Add truck       | POST   | /api/trucks          |        |
-| Get trucks      | GET    | /api/trucks          |        |
-| Query trucks    | GET    | -- TO DO --          |        |
-| Get truck       | GET    | /api/trucks/:id      |        |
-| Edit truck      | PUT    | /api/trucks/:id      |        |
-| Delete trucks   | DELETE | /api/trucks/:id      |        |
-| Add truck menu  | POST   | /api/trucks/:id/menu |        |
-| Get truck menu  | GET    | /api/trucks/:id/menu |        |
-| Edit truck menu | PUT    | /api/trucks/:id/menu |        |
+| TRUCKS            | Method | URL                  | TESTED |
+| :---------------- | :----- | :------------------- | :----- |
+| Add truck         | POST   | /api/trucks          |        |
+| Get trucks        | GET    | /api/trucks          |        |
+| Query trucks      | GET    | -- TO DO --          |        |
+| Get truck         | GET    | /api/trucks/:id      |        |
+| Edit truck        | PUT    | /api/trucks/:id      |        |
+| Delete trucks     | DELETE | /api/trucks/:id      |        |
+| Add truck menu    | POST   | /api/trucks/:id/menu |        |
+| Get truck menu    | GET    | /api/trucks/:id/menu |        |
+| Edit truck menu   | PUT    | /api/trucks/:id/menu |        |
+| Delete truck menu | DELETE | /api/trucks/:id/menu |        |
