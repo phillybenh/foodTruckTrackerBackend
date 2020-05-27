@@ -18,8 +18,7 @@ router.post("/", isValidTruck, isUnique, (req, res) => {
 // Get trucks	GET / api / trucks
 router.get("/", (req, res) => {
     const query = req.query;
-    console.log(query)
-
+    
     if (Object.keys(query).length === 0) {
 
     Trucks.find()
@@ -30,7 +29,6 @@ router.get("/", (req, res) => {
             res.status(500).json({ message: error.message });
         });
     } else{
-        console.log(query)
         Trucks.findQuery(query)
             .then(trucks => {
                 if (trucks) {
