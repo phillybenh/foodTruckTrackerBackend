@@ -5,9 +5,11 @@ module.exports = {
     findBy,
     findById,
     findMenuById,
+    findMenuItemById,
     insert,
     insertMenu,
     update,
+    updateMenu,
     remove
 }
 
@@ -39,6 +41,12 @@ function findMenuById(id) {
         // .first();
 }
 
+function findMenuItemById(id) {
+    return db("menus as m")
+    .where("m.id", id)
+    .first();
+}
+
 function insert(truck) {
     return db('trucks')
         .insert(truck, 'id')
@@ -58,6 +66,15 @@ function update(changes, id) {
         .update(changes)
         .then(res => {
             return findById(id);
+        });
+};
+
+function updateMenu(changes, menu_id, truck_id) {
+    return db("menus")
+        .where({ id: menu_id })
+        .update(changes)
+        .then(res => {
+            return findMenuById(truck_id);
         });
 };
 
