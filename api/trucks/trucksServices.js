@@ -5,7 +5,7 @@ const Trucks = require('./trucksModel');
 module.exports = {
     isUnique,
     isValidTruck,
-    isValidDel,
+    isValidUser,
     isValidMenuItem
 };
 
@@ -59,7 +59,7 @@ function isValidTruck(req, res, next) {
     }
 }
 
-function isValidDel(req, res, next) {
+function isValidUser(req, res, next) {
     const id = req.params.id;
     const token = req.headers.authorization;
     var decoded = jwt.decode(token);
@@ -68,7 +68,7 @@ function isValidDel(req, res, next) {
         .then(truck => {
             if (decoded.sub != truck.operator_id) {
                 res.status(401).json({
-                    message: "Please user ID does not match Token ID. You may only edit your own profile. ",
+                    message: "Please user ID does not match Token ID. You may only edit your own data. ",
                 });
             } else {
                 next();

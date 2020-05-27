@@ -17,9 +17,21 @@ function isValidProf(req, res, next) {
         res.status(401).json({
             message: "Please user ID does not match Token ID. You may only edit your own profile. ",
         });
-    } else if (!profile.currentStreetAddress || !profile.currentCity || !profile.currentState || !profile.currentZipCode) {
+    } else if (!profile.currentStreetAddress || typeof profile.currentStreetAddress !== "string") {
         res.status(400).json({
-            message: "Please provide the required location information",
+            message: "Please provide a valid street address.",
+        });
+    } else if (!profile.currentCity || typeof profile.currentCity !== "string") {
+        res.status(400).json({
+            message: "Please provide a valid city.",
+        });
+    } else if (!profile.currentState || typeof profile.currentState !== "string") {
+        res.status(400).json({
+            message: "Please provide a valid state.",
+        });
+    } else if (!profile.currentZipCode || typeof profile.currentZipCode !== "number") {
+        res.status(400).json({
+            message: "Please provide a valid zip code.",
         });
     } else {
         next();

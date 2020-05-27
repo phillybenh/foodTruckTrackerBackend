@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const Trucks = require('./trucksModel');
-const { isUnique, isValidTruck, isValidDel, isValidMenuItem } = require("./trucksServices");
+const { isUnique, isValidTruck, isValidUser, isValidMenuItem } = require("./trucksServices");
 
 
 // Add truck	POST / api / trucks
@@ -62,7 +62,7 @@ router.put('/:id', isValidTruck, (req, res) => {
 });
 
 // Delete trucks	DELETE / api / trucks /: id
-router.delete('/:id', isValidDel, (req, res) => {
+router.delete('/:id', isValidUser, (req, res) => {
     const { id } = req.params;
 
     Trucks.remove(id)
@@ -79,7 +79,7 @@ router.delete('/:id', isValidDel, (req, res) => {
 });
 
 // Add truck menu	POST / api / trucks /: id / menu
-router.post("/:id/menu", isValidMenuItem, (req, res) => {
+router.post("/:id/menu", isValidUser, isValidMenuItem, (req, res) => {
     const { id } = req.params;
     const menuItem = req.body;
 
@@ -99,7 +99,7 @@ router.post("/:id/menu", isValidMenuItem, (req, res) => {
         });
 });
 
-// Get truck menu	GET / api / trucks /: id / menu///////START HERE
+// Get truck menu	GET / api / trucks /: id / menu
 router.get("/:id/menu", (req, res) => {
     const { id } = req.params;
 
@@ -112,25 +112,61 @@ router.get("/:id/menu", (req, res) => {
         });
 });
 
-/// not done
-// Edit truck menu	PUT / api / trucks /: id / menu	
-router.put("/:id/menu", isValidMenuItem, (req, res) => {
-    const { id } = req.params;
+// Edit truck menu	PUT / api / trucks /: id / menu	function updateMenu(changes, menu_id, truck_id) {
+
+router.put("/:id/menu/:item_id", isValidUser, isValidMenuItem, (req, res) => {
+    const { id, item_id } = req.params;
     const menuItem = req.body;
 
     Trucks.findById(id)
         .then(truck => {
             if (truck) {
-                Trucks.insertMenu(menuItem, id)
-                    .then(updatedMenu => {
-                        res.status(200).json({ data:updatedMenu });
-                    });
+                Trucks.findMenuItemById(item_id)
+                    .then(item => {
+                        if (item && item.truck_id == id) {
+                            Trucks.updateMenu(menuItem, item_id, id)
+                                .then(updatedMenu => {
+                                    res.status(200).json({ data: updatedMenu });
+                                });
+                        } else {
+                            res.status(404).json({ message: 'Menu item id must exist and correspond to the given truck id.' });
+                        }
+                    })
+
             } else {
                 res.status(404).json({ message: 'Could not find the truck id for this menu item.' });
             }
         })
         .catch(err => {
             res.status(500).json({ message: 'Failed to update profile.' });
+        });
+});
+
+// Delete truck menu	DELETE	/api/trucks/:id/menu 
+router.delete('/:id/menu/:item_id', isValidUser, (req, res) => {
+    const { id, item_id } = req.params;
+
+    Trucks.findById(id)
+        .then(truck => {
+            if (truck) {
+                Trucks.findMenuItemById(item_id)
+                    .then(item => {
+                        if (item && item.truck_id == id) {
+                            Trucks.removeMenuItem(item_id)
+                                .then(updatedMenu => {
+                                    res.status(200).json({ removed: updatedMenu });
+                                });
+                        } else {
+                            res.status(404).json({ message: 'Menu item id must exist and correspond to the given truck id.' });
+                        }
+                    })
+
+            } else {
+                res.status(404).json({ message: 'Could not find the truck id for this menu item.' });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Failed to delete menu item.' });
         });
 });
 
