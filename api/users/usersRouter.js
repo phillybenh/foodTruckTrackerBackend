@@ -50,7 +50,7 @@ router.get("/:id", (req, res) => {
         });
 });
 
-// Edit a user profile	PUT	/api/users/:id
+// Create a user profile	PUT	/api/users/:id
 router.post("/:id", isValidProf, (req, res) => {
     const { id } = req.params;
     const profile = req.body;
@@ -112,28 +112,6 @@ router.get('/:id/favoriteTrucks', (req, res) => {
             res.status(500).json({ message: error.message });
         });
 })
-// router.get('/:id/favoriteTrucks', (req, res) => {
-//     const { id } = req.params;
-//     const favTrucks = []
-
-//     Users.favNums(id)
-//         .then(resp => {
-//             return resp.map((num) => {
-//                 return Users.favTrucks(num)
-//                     .then(trucks => {
-//                         console.log(trucks)
-//                         favTrucks.push(trucks);
-//                     })
-//                 res.status(200).json({ data: favTrucks });
-
-//             })
-//             res.status(200).json({ data: favTrucks });
-
-//         })
-//         .catch(error => {
-//             res.status(500).json({ message: error.message });
-//         });
-// })
 
 router.get('/:id/trucksOwned', (req, res) => {
     const { id } = req.params;

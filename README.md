@@ -22,77 +22,80 @@ This is the backend for the Food Truck Tracker web application.
 
 ## API Information
 
- - To return food trucks of a specific cusine type, use a query string in the URL, example:
-     - `/api/trucks?cuisineType=soup`
+- To return food trucks of a specific cusine type, use a query string in the URL, example:
 
- - User registration POST request JSON object example:
+  - `/api/trucks?cuisineType=soup`
 
-    ```
-    {
-      "username": "uniqueUser",
-      "password": "passwordString",
-      "email": "email@address.com",
-      "operator": false,
-      "diner": true
-    }
-    ```
+- User registration POST request JSON object example:
 
- - User profile POST request JSON object example:
-    ```
-    {
-      "firstName": "First",
-      "lastName": "Last",
-      "profileImageUrl": "string", // or null
-      "currentStreetAddress": "123 Profile St.",
-      "currentCity": "Profileville",
-      "currentState": "PA",
-      "currentZipCode": 19147,
-      "radSize": 6,
-      "bio": "string" // or null
-    }
-    ```
+  ```
+  {
+    "username": "uniqueUser",
+    "password": "passwordString",
+    "email": "email@address.com",
+    "operator": false,
+    "diner": true
+  }
+  ```
 
- - Food truck POST request JASON object example:
-    ```
-    {
-      "user_id": 10,
-      "truckName": "Truck Name String",
-      "imageOfTruck": "URL string", // can be null
-      "cuisineType": "cuisine string"
-    } 
-    ```
+- User profile POST request JSON object example:
 
- - Menu item POST request JSON object example:
-    ```
-    {
-    "itemName": "Item Name String!",
-    "itemDescription": "Item description string",	
-    "itemPhotos": "URL String", // or null	
-    "itemPrice": 4.88,	// numer required
-    "customerRatings": [66, 78, 74],	// or null
-    "customerRatingAvg: 72.6667 // or null
-    }
-    ```
+  ```
+  {
+    "firstName": "First",
+    "lastName": "Last",
+    "profileImageUrl": "string", // or null
+    "currentStreetAddress": "123 Profile St.",
+    "currentCity": "Profileville",
+    "currentState": "PA",
+    "currentZipCode": 19147,
+    "radSize": 6,
+    "bio": "string" // or null
+  }
+  ```
+
+- Food truck POST request JASON object example:
+
+  ```
+  {
+    "user_id": 10,
+    "truckName": "Truck Name String",
+    "imageOfTruck": "URL string", // can be null
+    "cuisineType": "cuisine string"
+  }
+  ```
+
+- Menu item POST request JSON object example:
+  ```
+  {
+  "itemName": "Item Name String!",
+  "itemDescription": "Item description string",
+  "itemPhotos": "URL String", // or null
+  "itemPrice": 4.88,	// numer required
+  "customerRatings": [66, 78, 74],	// or null
+  "customerRatingAvg: 72.6667 // or null
+  }
+  ```
   <!-- ✅ -->
 
 ### Endpoints
 
 | ACCESS        | Method | URL           | TESTED |
 | :------------ | :----- | :------------ | :----- |
-| Login as user | POST   | /api/login    |        |
-| Add a user    | POST   | /api/register |        |
+| Login as user | POST   | /api/login    | ✅     |
+| Add a user    | POST   | /api/register | ✅     |
 
 | USERS                   | Method | URL                           | TESTED |
 | :---------------------- | :----- | :---------------------------- | :----- |
-| Get a list of users     | GET    | /api/users                    |        |
-| Get a list of diners    | GET    | /api/users/diners             |        |
-| Get a list of operators | GET    | /api/users/operators          |        |
-| Add a user profile      | POST   | /api/users/:id                |        |
-| Get a user profile      | GET    | /api/users/:id                |        |
-| Edit a user profile     | PUT    | /api/users/:id                |        |
-| Delete a user           | DELETE | /api/users/:id                |        |
-| Get a favorite trucks   | GET    | /api/users/:id/favoriteTrucks |        |
-| Get a owned trucks      | GET    | /api/users/:id/trucksOwned    |        |
+| Get a list of users     | GET    | /api/users                    | ✅     |
+| Get a list of diners    | GET    | /api/users/diners             | ✅     |
+| Get a list of operators | GET    | /api/users/operators          | ✅     |
+| Add a user profile      | POST   | /api/users/:id                | ✅     |
+| Get a user profile      | GET    | /api/users/:id                | ✅     |
+| Edit a user profile     | PUT    | /api/users/:id                | ✅     |
+| Delete a user           | DELETE | /api/users/:id                | ✅     |
+| Get a favorite trucks   | GET    | /api/users/:id/favoriteTrucks | ✅     |
+| Get a owned trucks      | GET    | /api/users/:id/trucksOwned    | ✅     |
 
 | TRUCKS            | Method | URL                           | TESTED |
 | :---------------- | :----- | :---------------------------- | :----- |
