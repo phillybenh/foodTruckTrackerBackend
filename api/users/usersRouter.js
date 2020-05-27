@@ -73,7 +73,7 @@ router.put('/:id', isValidProf, (req, res) => {
             if (profile) {
                 Users.update(changes, id)
                     .then(updatedProfile => {
-                        res.status(200).json(updatedProfile);
+                        res.status(200).json({ data: updatedProfile });
                     });
             } else {
                 res.status(404).json({ message: 'Could not find profile for the given id.' });
