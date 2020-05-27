@@ -10,7 +10,8 @@ module.exports = {
     insertMenu,
     update,
     updateMenu,
-    remove
+    remove,
+    removeMenuItem
 }
 
 function find() {
@@ -44,7 +45,7 @@ function findMenuById(id) {
 function findMenuItemById(id) {
     return db("menus as m")
     .where("m.id", id)
-    .first();
+    .first()
 }
 
 function insert(truck) {
@@ -84,6 +85,19 @@ function remove(id) {
             const delObj = resp;
             return db("trucks as t")
                 .where("t.id", id)
+                .del()
+                .then(res => {
+                    return delObj;
+                });
+        })
+};
+
+function removeMenuItem(id) {
+    return findMenuItemById(id)
+        .then(resp => {
+            const delObj = resp;
+            return db("menus as m")
+                .where("m.id", id)
                 .del()
                 .then(res => {
                     return delObj;

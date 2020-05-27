@@ -142,5 +142,32 @@ router.put("/:id/menu/:item_id", isValidUser, isValidMenuItem, (req, res) => {
         });
 });
 
-// Delete truck menu	DELETE	/api/trucks/:id/menu	
+// Delete truck menu	DELETE	/api/trucks/:id/menu 
+router.delete('/:id/menu/:item_id', isValidUser, (req, res) => {
+    const { id, item_id } = req.params;
+
+    Trucks.findById(id)
+        .then(truck => {
+            if (truck) {
+                Trucks.findMenuItemById(item_id)
+                    .then(item => {
+                        if (item && item.truck_id == id) {
+                            Trucks.removeMenuItem(item_id)
+                                .then(updatedMenu => {
+                                    res.status(200).json({ removed: updatedMenu });
+                                });
+                        } else {
+                            res.status(404).json({ message: 'Menu item id must exist and correspond to the given truck id.' });
+                        }
+                    })
+
+            } else {
+                res.status(404).json({ message: 'Could not find the truck id for this menu item.' });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Failed to delete menu item.' });
+        });
+});
+
 module.exports = router;
