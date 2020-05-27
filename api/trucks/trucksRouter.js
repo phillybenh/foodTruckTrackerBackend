@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const Trucks = require('./trucksModel');
-const { isUnique, isValidTruck, isValidDel } = require("./trucksServices");
+const { isUnique, isValidTruck, isValidDel, isValidMenuItem } = require("./trucksServices");
 
 
 // Add truck	POST / api / trucks
@@ -50,7 +50,7 @@ router.put('/:id', isValidTruck, (req, res) => {
             if (truck) {
                 Trucks.update(changes, id)
                     .then(updatedTruck => {
-                        res.status(200).json(updatedTruck);
+                        res.status(200).json({ data: updatedTruck });
                     });
             } else {
                 res.status(404).json({ message: 'Could not find profile for the given id.' });
@@ -79,7 +79,7 @@ router.delete('/:id', isValidDel, (req, res) => {
 });
 
 // Add truck menu	POST / api / trucks /: id / menu
-router.post("/:id/menu", (req, res) => {
+router.post("/:id/menu", isValidMenuItem, (req, res) => {
     const { id } = req.params;
     const menuItem = req.body;
 
@@ -88,7 +88,7 @@ router.post("/:id/menu", (req, res) => {
             if (truck) {
                 Trucks.insertMenu(menuItem, id)
                     .then(updatedMenu => {
-                        res.status(200).json(updatedMenu);
+                        res.status(200).json({ data: updatedMenu });
                     });
             } else {
                 res.status(404).json({ message: 'Could not find the truck id for this menu item.' });
@@ -114,7 +114,7 @@ router.get("/:id/menu", (req, res) => {
 
 /// not done
 // Edit truck menu	PUT / api / trucks /: id / menu	
-router.put("/:id/menu", (req, res) => {
+router.put("/:id/menu", isValidMenuItem, (req, res) => {
     const { id } = req.params;
     const menuItem = req.body;
 
@@ -123,7 +123,7 @@ router.put("/:id/menu", (req, res) => {
             if (truck) {
                 Trucks.insertMenu(menuItem, id)
                     .then(updatedMenu => {
-                        res.status(200).json(updatedMenu);
+                        res.status(200).json({ data:updatedMenu });
                     });
             } else {
                 res.status(404).json({ message: 'Could not find the truck id for this menu item.' });
