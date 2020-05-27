@@ -27,7 +27,6 @@ function findQuery(query) {
 }
 
 function findBy(filter) {
-    console.log("filter", filter);
     return db("trucks as t")
         .where(filter)
     // .select("u.id as user_id", "u.username", "u.password")

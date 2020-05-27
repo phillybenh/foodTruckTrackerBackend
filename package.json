@@ -24,8 +24,10 @@
   "homepage": "https://github.com/2foodtrucktrackr/backend#readme",
   "devDependencies": {
     "cross-env": "^7.0.2",
+    "jest": "^26.0.1",
     "nodemon": "^2.0.4",
-    "sqlite3": "^4.2.0"
+    "sqlite3": "^4.2.0",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

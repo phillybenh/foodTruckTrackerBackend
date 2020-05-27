@@ -23,8 +23,8 @@ This is the backend for the Food Truck Tracker web application.
 ## API Information
 
  - To return food trucks of a specific cusine type, use a query string in the URL, example:
-    `/api/trucks?cuisineType=soup`
-    
+     - `/api/trucks?cuisineType=soup`
+
  - User registration POST request JSON object example:
 
     ```
