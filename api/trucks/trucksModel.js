@@ -87,7 +87,12 @@ function remove(id) {
                 .where("t.id", id)
                 .del()
                 .then(res => {
-                    return delObj;
+                    return db("menus as m")
+                        .where("m.truck_id", id)
+                        .del()
+                        .then(res => {
+                            return delObj;
+                        });
                 });
         })
 };

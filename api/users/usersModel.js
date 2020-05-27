@@ -92,7 +92,6 @@ function remove(id) {
                         .where("u.id", id)
                         .del()
                         .then(res => {
-                            console.log(delObj)
                             return delObj;
                         });
                 });
