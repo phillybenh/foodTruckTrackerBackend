@@ -9,7 +9,9 @@ module.exports = {
     findById,
     insert,
     update,
-    remove
+    remove,
+    favTrucks,
+    findTrucks
 };
 
 function find() {
@@ -35,7 +37,7 @@ function findOperators() {
 
 
 function findBy(filter) {
-    // console.log("filter", filter);
+    console.log("filter", filter);
     return db("users as u")
         .where(filter)
         .select("u.id as user_id", "u.username", "u.password")
@@ -57,16 +59,16 @@ function findById(id) {
         .fullOuterJoin("dinerProfile as dp", "u.id", "dp.user_id")
         .fullOuterJoin("trucks as t", "u.id", "t.user_id")
         // .fullOuterJoin("diner_trucks as dt", "dp.id", "dt.profile_id")
-        .select("u.id as user_id", "u.username", "u.email", "u.operator", "t.truckName", "u.diner", "dp.firstName", "dp.lastName", "dp.profileImageUrl", "dp.currentStreetAddress", "dp.currentCity", "dp.currentState", "dp.currentZipCode", "dp.radSize", "dp.bio")
-    .where("u.id", id)
-    .first();
+        .select("u.id as user_id", "u.username", "u.email", "u.operator", "t.truckName", "u.diner", "dp.id as profile_id", "dp.firstName", "dp.lastName", "dp.profileImageUrl", "dp.currentStreetAddress", "dp.currentCity", "dp.currentState", "dp.currentZipCode", "dp.radSize", "dp.bio")
+        .where("u.id", id)
+        .first();
 }
 
 function insert(profile, user_id) {
     profile.user_id = user_id
-  return db('dinerProfile')
-    .insert(profile, 'id')
-      .then(([id]) => findById(id));
+    return db('dinerProfile')
+        .insert(profile, 'id')
+        .then(([id]) => findById(id));
 }
 
 function update(changes, id) {
@@ -86,15 +88,103 @@ function remove(id) {
                 .where("dp.user_id", id)
                 .del()
                 .then(res => {
-                   return db("users as u")
+                    return db("users as u")
                         .where("u.id", id)
                         .del()
-                    .then(res => {
-                        console.log(delObj)
-                        return delObj;
-                    });
+                        .then(res => {
+                            console.log(delObj)
+                            return delObj;
+                        });
                 });
         })
 };
 
+function favTrucks(id) {
+    return findById(id)
+        .then(resp => {
+            const profile = resp;
+            return db("diner_trucks as dt")
+                .join("trucks as t", "dt.truck_id", "t.id")
+                .select("dt.truck_id", "t.truckName")
+                .where("dt.profile_id", profile.profile_id)
+                .where("favoriteTruck", true)
+        })
+}
+/*
+function favNums(id) {
+
+    return findById(id)
+        .then(resp => {
+
+            const profile = resp;
+            return db("diner_trucks as dt")
+                .select("truck_id")
+                .where("dt.profile_id", profile.profile_id)
+                .where("favoriteTruck", true)
+            .then(favNums => {
+                favNums.map((num) => {
+                    return db("trucks as t")
+                        .select("truckName")
+                        .where("t.id", num.truck_id)
+                        .first()
+                        .then(truckName => {
+                            console.log(truckName.truckName)
+                            favTrucks.push(truckName.truckName)
+                            console.log(favTrucks)
+                            return favTrucks
+                        })
+                })
+            })
+        })
+}
+
+function favTrucks(num) {
+    return db("trucks as t")
+        .select("truckName")
+        .where("t.id", num.truck_id)
+        .first()
+        .then(truckName => {
+            return truckName.truckName
+        })
+}
+*/
+function findTrucks(id) {
+    return db("trucks as t")
+        .select("t.id as truck_id", "t.truckName", "t.imageOfTruck", "t.cuisineType", "t.customerRatingAvg")
+        .where("t.user_id", id)
+}
+
+
+/*
+.then(() => {
+                    return favTrucks
+                })
+
+    function favTrucks(id) {
+    const favTrucks = []
+
+    return findById(id)
+        .then(resp => {
+            const profile = resp;
+            return db("diner_trucks as dt")
+                .select("truck_id")
+                .where("dt.profile_id", profile.profile_id)
+                .where("favoriteTruck", true)
+                .then(favNums => {
+                    favNums.map((num) => {
+                        return db("trucks as t")
+                            .select("truckName")
+                            .where("t.id", num.truck_id)
+                            .first()
+                            .then(truckName => {
+                                console.log(truckName.truckName)
+                                favTrucks.push(truckName.truckName)
+                                console.log(favTrucks)
+                                return favTrucks
+                            })
+                    })
+                })
+        })
+}
+*/
 
