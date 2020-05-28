@@ -6,13 +6,14 @@ This is the backend for the Food Truck Tracker web application.
 
 ## The Food Truck Tracker Project:
 
-- Marketing Page:
+<!-- - Marketing Page:
   - Repo: https://github.com/2foodtrucktrackr/marketing
   - Deployed: TBD
 - Web Application Page:
   - Repo: https://github.com/2foodtrucktrackr/frontend
-  - Deployed: TBD
+  - Deployed: TBD -->
 - Backend:
+  - Postman Documentation: https://documenter.getpostman.com/view/11274891/SztD4n16?version=latest
   - Repo: https://github.com/2foodtrucktrackr/backend
   - Base URL: https://foodspy.herokuapp.com/
 
@@ -76,7 +77,6 @@ This is the backend for the Food Truck Tracker web application.
   "customerRatingAvg: 72.6667 // or null
   }
   ```
-  <!-- ✅ -->
 
 ### Endpoints
 
