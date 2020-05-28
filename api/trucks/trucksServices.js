@@ -68,7 +68,7 @@ function isValidUser(req, res, next) {
         .then(truck => {
             if (decoded.sub != truck.operator_id) {
                 res.status(401).json({
-                    message: "Please user ID does not match Token ID. You may only edit your own data. ",
+                    message: "User ID does not match Token ID. You may only edit your own data. ",
                 });
             } else {
                 next();
@@ -99,7 +99,7 @@ function isValidMenuItem(req, res, next) {
         res.status(400).json({
             message: "Customer ratings must be an array."
         })
-    } else if (menuItem.customerRatingAvg && typeof menuItem.customerRatingAvg !== "string") {
+    } else if (menuItem.customerRatingAvg && typeof menuItem.customerRatingAvg !== "number") {
         res.status(400).json({
             message: "Average rating must be a number."
         })
