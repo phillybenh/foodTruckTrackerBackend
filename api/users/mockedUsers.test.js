@@ -73,7 +73,6 @@ describe('users with mocked login', () => {
             radSize: 5,
             bio: 'Come to my truck and speak to me, the manager.'
         })
-        // console.log(res.body)
     })
     it('/api/users/:id/favoriteTrucks', async () => {
         const res = await request(server)

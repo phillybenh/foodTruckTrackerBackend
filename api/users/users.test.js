@@ -146,7 +146,6 @@ describe('users', () => {
             const resDel = await request(server)
                 .delete("/api/users/5")
                 .set("authorization", login.body.token);
-            console.log(resDel)
             expect(resPost.status).toBe(201);
             expect(resPost.body.data).toMatchObject({
                 user_id: 5,

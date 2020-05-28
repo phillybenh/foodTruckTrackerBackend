@@ -99,12 +99,12 @@ This is the backend for the Food Truck Tracker web application.
 
 | TRUCKS            | Method | URL                           | TESTED |
 | :---------------- | :----- | :---------------------------- | :----- |
-| Add truck         | POST   | /api/trucks                   |        |
-| Get trucks        | GET    | /api/trucks                   |        |
-| Get truck         | GET    | /api/trucks/:id               |        |
-| Edit truck        | PUT    | /api/trucks/:id               |        |
-| Delete trucks     | DELETE | /api/trucks/:id               |        |
-| Add truck menu    | POST   | /api/trucks/:id/menu          |        |
-| Get truck menu    | GET    | /api/trucks/:id/menu          |        |
-| Edit truck menu   | PUT    | /api/trucks/:id/menu/:item_id |        |
-| Delete truck menu | DELETE | /api/trucks/:id/menu/:item_id |        |
+| Add truck         | POST   | /api/trucks                   | ✅     |
+| Get trucks        | GET    | /api/trucks                   | ✅     |
+| Get truck         | GET    | /api/trucks/:id               | ✅     |
+| Edit truck        | PUT    | /api/trucks/:id               | ✅     |
+| Delete trucks     | DELETE | /api/trucks/:id               | ✅     |
+| Add truck menu    | POST   | /api/trucks/:id/menu          | ✅     |
+| Get truck menu    | GET    | /api/trucks/:id/menu          | ✅     |
+| Edit truck menu   | PUT    | /api/trucks/:id/menu/:item_id | ✅     |
+| Delete truck menu | DELETE | /api/trucks/:id/menu/:item_id | ✅     |
