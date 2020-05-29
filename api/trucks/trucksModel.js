@@ -7,7 +7,7 @@ module.exports = {
     findById,
     findMenuById,
     findMenuItemById,
-    insert,
+    add,
     insertMenu,
     update,
     updateMenu,
@@ -53,7 +53,7 @@ function findMenuItemById(id) {
     .first()
 }
 
-function insert(truck) {
+function add(truck) {
     return db('trucks')
         .insert(truck, 'id')
         .then(([id]) => findById(id));

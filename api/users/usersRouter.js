@@ -54,7 +54,7 @@ router.get("/:id", (req, res) => {
 router.post("/:id", isValidProf, (req, res) => {
     const { id } = req.params;
     const profile = req.body;
-    Users.insert(profile, id)
+    Users.add(profile, id)
         .then(users => {
             res.status(201).json({ data: users });
         })
@@ -123,5 +123,21 @@ router.get('/:id/trucksOwned', (req, res) => {
             res.status(500).json({ message: error.message });
         });
 })
+
+
+// IN DEVELOPMENT user distance to truck 	/api/users/:id/dist/:truck_id
+// router.post("/:id/dist/:truck_id", (req, res) => {
+//     const { id, truck_id } = req.params;
+// console.log("id", id)
+// console.log("truck_id", truck_id)
+//     Users.findDist(id, truck_id)
+//         .then(users => {
+//             console.log(users)
+//             res.status(200).json({ data: users });
+//         })
+//         .catch(error => {
+//             res.status(500).json({ message: error.message });
+//         });
+// });
 
 module.exports = router;

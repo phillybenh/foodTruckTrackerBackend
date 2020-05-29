@@ -6,7 +6,7 @@ const { isUnique, isValidTruck, isValidUser, isValidMenuItem } = require("./truc
 
 // Add truck	POST / api / trucks
 router.post("/", isValidTruck, isUnique, (req, res) => {
-    Trucks.insert(req.body)
+    Trucks.add(req.body)
         .then(trucks => {
             res.status(200).json({ data: trucks });
         })
