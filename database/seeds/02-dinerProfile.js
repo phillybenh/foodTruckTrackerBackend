@@ -36,7 +36,7 @@ exports.seed = function (knex) {
           currentCity: "Mobile",
           currentState: "LA",
           currentZipCode: 12345,
-          // radSize: 5,
+          radSize: 5,
           bio: "I'm stu and food trucks are my jam"
         },
         {

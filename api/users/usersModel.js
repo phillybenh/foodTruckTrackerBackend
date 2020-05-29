@@ -7,11 +7,12 @@ module.exports = {
     findOperators,
     findBy,
     findById,
-    insert,
+    // insert,
     update,
     remove,
     favTrucks,
-    findTrucks
+    findTrucks,
+    // findDist
 };
 
 function find() {
@@ -44,15 +45,15 @@ function findBy(filter) {
         .orderBy("u.id");
 }
 
-async function add(user) {
-    try {
-        const [id] = await db("users").insert(user, "id");
+// async function add(user) {
+//     try {
+//         const [id] = await db("users").insert(user, "id");
 
-        return findById(id);
-    } catch (error) {
-        throw error;
-    }
-}
+//         return findById(id);
+//     } catch (error) {
+//         throw error;
+//     }
+// }
 
 function findById(id) {
     return db("users as u")
@@ -64,7 +65,7 @@ function findById(id) {
         .first();
 }
 
-function insert(profile, user_id) {
+function add(profile, user_id) {
     profile.user_id = user_id
     return db('dinerProfile')
         .insert(profile, 'id')
@@ -154,36 +155,22 @@ function findTrucks(id) {
 }
 
 
-/*
-.then(() => {
-                    return favTrucks
-                })
+// function findDist(id, truck_id) {
 
-    function favTrucks(id) {
-    const favTrucks = []
+//     return db("dinerProfile as dp")
+//             .where("dp.user_id", id)
+//             .select("dp.currentStreetAddress", "dp.currentCity", "dp.currentState", "dp.currentZipCode")
+//             // .then(user => {
+//             //     console.log(userLocation)
 
-    return findById(id)
-        .then(resp => {
-            const profile = resp;
-            return db("diner_trucks as dt")
-                .select("truck_id")
-                .where("dt.profile_id", profile.profile_id)
-                .where("favoriteTruck", true)
-                .then(favNums => {
-                    favNums.map((num) => {
-                        return db("trucks as t")
-                            .select("truckName")
-                            .where("t.id", num.truck_id)
-                            .first()
-                            .then(truckName => {
-                                console.log(truckName.truckName)
-                                favTrucks.push(truckName.truckName)
-                                console.log(favTrucks)
-                                return favTrucks
-                            })
-                    })
-                })
-        })
-}
-*/
+//             // })
+//             // console.log(userLocation)
+//         // const [{truckLocation}] = await db("location as l")
+//         //     .where("l.truck_id", truck_id)
+//         //     .select("l.currentStreetAddress", "l.currentCity", "l.currentState", "l.currentZipCode")
+//         //     .first();
+//         //     console.log({truckLocation})
 
+//         return findById(id)
+    
+// }
