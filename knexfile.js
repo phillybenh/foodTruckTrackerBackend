@@ -5,17 +5,16 @@ const pgConnection = process.env.DATABASE_URL || "postgresql://postgres@localhos
 module.exports = {
 
   development: {
-    client: "pg",
+    client: 'sqlite3',
+    useNullAsDefault: true,
     connection: {
-      host: '127.0.0.1',
-      user: process.env.PG_USER,
-      password: process.env.PG_PWD,
-      database: 'foodTruckTracker',
-      charset: 'utf8'
+      filename: './database/foodTruckTracker.db3'
     },
     pool: {
-      min: 2,
-      max: 10,
+      afterCreate: (conn, done) => {
+        // runs after a connection is made to the sqlite engine
+        conn.run('PRAGMA foreign_keys = ON', done); // turn on FK enforcement
+      },
     },
     migrations: {
       directory: "./database/migrations",
