@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const Trucks = require('./trucksModel');
-const { isUnique, isValidTruck, isValidUser, isValidMenuItem } = require("./trucksServices");
+const { isUnique, isValidTruck, isValidUser, isValidMenuItem, isValidLocation} = require("./trucksServices");
 
 
 // Add truck	POST / api / trucks
@@ -18,17 +18,17 @@ router.post("/", isValidTruck, isUnique, (req, res) => {
 // Get trucks	GET / api / trucks
 router.get("/", (req, res) => {
     const query = req.query;
-    
+
     if (Object.keys(query).length === 0) {
 
-    Trucks.find()
-        .then(trucks => {
-            res.status(200).json({ data: trucks });
-        })
-        .catch(error => {
-            res.status(500).json({ message: error.message });
-        });
-    } else{
+        Trucks.find()
+            .then(trucks => {
+                res.status(200).json({ data: trucks });
+            })
+            .catch(error => {
+                res.status(500).json({ message: error.message });
+            });
+    } else {
         Trucks.findQuery(query)
             .then(trucks => {
                 if (trucks) {
@@ -185,6 +185,48 @@ router.delete('/:id/menu/:item_id', isValidUser, (req, res) => {
         })
         .catch(err => {
             res.status(500).json({ message: 'Failed to delete menu item.' });
+        });
+});
+
+// Post a truck location
+router.post("/:id/location", isValidUser, isValidLocation, (req, res) => {
+    const { id } = req.params;
+    const location = req.body;
+
+    Trucks.findById(id)
+        .then(truck => {
+            if (truck) {
+                Trucks.insertLocation(location, id)
+                    .then(updatedLocation => {
+                        res.status(200).json({ data: updatedLocation });
+                    });
+            } else {
+                res.status(404).json({ message: 'Could not find the truck id to post this location.' });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Failed to update location.' });
+        });
+});
+
+// Edit a truck location
+router.put("/:id/location/:location_id", isValidUser, isValidLocation, (req, res) => {
+    const { id, location_id } = req.params;
+    const location = req.body;
+
+    Trucks.findById(id)
+        .then(truck => {
+            if (truck.location_id != null) {
+                Trucks.updateLocation(location, id, location_id)
+                    .then(updatedLocation => {
+                        res.status(200).json({ data: updatedLocation });
+                    });
+            } else {
+                res.status(404).json({ message: 'Could not find the truck id or location id to post this location update.' });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Failed to update location.' });
         });
 });
 

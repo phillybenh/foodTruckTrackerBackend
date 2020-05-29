@@ -6,7 +6,8 @@ module.exports = {
     isUnique,
     isValidTruck,
     isValidUser,
-    isValidMenuItem
+    isValidMenuItem,
+    isValidLocation
 };
 
 function isUnique(req, res, next) {
@@ -107,3 +108,70 @@ function isValidMenuItem(req, res, next) {
         next();
     }
 }
+
+function isValidLocation(req, res, next) {
+    const location = req.body;
+
+    if (!location.currentLocationDescription || typeof location.currentLocationDescription !== "string") {
+        res.status(400).json({
+            message: "Location description must be a string."
+        })
+    } else if (!location.currentStreetAddress || typeof location.currentStreetAddress !== "string") {
+        res.status(400).json({
+            message: "Street address must be a string."
+        })
+    } else if (!location.currentCity && typeof location.currentCity !== "string") {
+        res.status(400).json({
+            message: "Current city must be a string."
+        })
+    } else if (!location.currentState || typeof location.currentState !== "string") {
+        res.status(400).json({
+            message: "Current state must be a string."
+        })
+    } else if (!location.currentZipCode || typeof location.currentZipCode !== "number") {
+        res.status(400).json({
+            message: "Customer ratings must be an array."
+        })
+    } else if (!location.currentDepartureTime || typeof location.currentDepartureTime !== "string") {
+        res.status(400).json({
+            message: "Current departure time must be a string."
+        })
+    } else if (location.nextLocationDescription && typeof location.nextLocationDescription !== "string") {
+        res.status(400).json({
+            message: "nextLocationDescription must be a string a string."
+        })
+    } else if (location.nextStreetAddress && typeof location.nextStreetAddress !== "string") {
+        res.status(400).json({
+            message: "nextStreetAddress must be a string."
+        })
+    } else if (location.nextCity && typeof location.nextCity !== "string") {
+        res.status(400).json({
+            message: "nextCity must be a string."
+        })
+    } else if (location.nextState && typeof location.nextState !== "string") {
+        res.status(400).json({
+            message: "nextState must be a string a string."
+        })
+    } else if (location.nextZipCode && typeof location.nextZipCode !== "number") {
+        res.status(400).json({
+            message: "nextZipCode must be a string a number."
+        })
+    } else if (location.nextArrivalTime && typeof location.nextArrivalTime !== "string") {
+        res.status(400).json({
+            message: "nextArrivalTime must be a string a string."
+        })
+    } else if (location.nextDepartureTime && typeof location.nextDepartureTime !== "string") {
+        res.status(400).json({
+            message: "nextDepartureTime must be a string a string."
+        })
+    } else {
+        next();
+    }
+}
+
+
+
+
+
+
+
