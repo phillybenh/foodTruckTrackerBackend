@@ -17,8 +17,8 @@ module.exports = {
 
 function find() {
     return db("users as u")
-        .fullOuterJoin("dinerProfile as dp", "u.id", "dp.user_id")
-        .fullOuterJoin("trucks as t", "u.id", "t.user_id")
+        .leftJoin("dinerProfile as dp", "u.id", "dp.user_id")
+        .leftJoin("trucks as t", "u.id", "t.user_id")
         // .fullOuterJoin("diner_trucks as dt", "dp.id", "dt.profile_id")
         .select("u.id as user_id", "u.username", "u.email", "u.operator", "t.truckName", "u.diner", "dp.firstName", "dp.lastName", "dp.profileImageUrl", "dp.currentStreetAddress", "dp.currentCity", "dp.currentState", "dp.currentZipCode", "dp.radSize", "dp.bio")
 }
@@ -57,8 +57,8 @@ function findBy(filter) {
 
 function findById(id) {
     return db("users as u")
-        .fullOuterJoin("dinerProfile as dp", "u.id", "dp.user_id")
-        .fullOuterJoin("trucks as t", "u.id", "t.user_id")
+        .leftJoin("dinerProfile as dp", "u.id", "dp.user_id")
+        .leftJoin("trucks as t", "u.id", "t.user_id")
         // .fullOuterJoin("diner_trucks as dt", "dp.id", "dt.profile_id")
         .select("u.id as user_id", "u.username", "u.email", "u.operator", "t.truckName", "u.diner", "dp.id as profile_id", "dp.firstName", "dp.lastName", "dp.profileImageUrl", "dp.currentStreetAddress", "dp.currentCity", "dp.currentState", "dp.currentZipCode", "dp.radSize", "dp.bio")
         .where("u.id", id)

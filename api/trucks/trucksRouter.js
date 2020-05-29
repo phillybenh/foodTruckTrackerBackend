@@ -188,4 +188,27 @@ router.delete('/:id/menu/:item_id', isValidUser, (req, res) => {
         });
 });
 
+// Post a truck location
+router.post("/:id/location", isValidUser, (req, res) => {
+    const { id } = req.params;
+    const location = req.body;
+
+    Trucks.findById(id)
+        .then(truck => {
+            if (truck) {
+                Trucks.insertLocation(location, id)
+                    .then(updatedLocation => {
+                        res.status(200).json({ data: updatedLocation });
+                    });
+            } else {
+                res.status(404).json({ message: 'Could not find the truck id to post this location.' });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Failed to update location.' });
+        });
+});
+
+// Edit a truck location
+
 module.exports = router;
