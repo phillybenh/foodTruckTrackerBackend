@@ -70,13 +70,32 @@ This is the backend for the Food Truck Tracker web application.
 - Menu item POST request JSON object example:
   ```
   {
-  "itemName": "Item Name String!",
-  "itemDescription": "Item description string",
-  "itemPhotos": "URL String", // or null
-  "itemPrice": 4.88,	// numer required
-  "customerRatings": [66, 78, 74],	// or null
-  "customerRatingAvg: 72.6667 // or null
+    "itemName": "Item Name String!",
+    "itemDescription": "Item description string",
+    "itemPhotos": "URL String", // or null
+    "itemPrice": 4.88,	// numer required
+    "customerRatings": [66, 78, 74],	// or null
+    "customerRatingAvg: 72.6667 // or null
   }
+  ```
+
+- Location POST request JSON object example (all 'next...' keys are optional):
+  ```
+  {
+	  "currentLocationDescription": "Penn Treaty Park",
+    "currentStreetAddress": "1301 N Beach St",
+    "currentCity": "Philadelphia",
+    "currentState": "PA",
+    "currentZipCode": 19125,
+    "currentDepartureTime": "2020-05-30 18:00:00 -5:00",
+    "nextLocationDescription": "Clarke Park",
+    "nextStreetAddress": "4398 Baltimore Ave",
+    "nextCity": "Philadelphia",
+    "nextState": "PA",
+    "nextZipCode": 19104,
+    "nextArrivalTime": "2020-05-31 12:00:00 -5:00",
+    "nextDepartureTime": "2020-05-31 18:00:00 -5:00"
+}
   ```
 
 ### Endpoints

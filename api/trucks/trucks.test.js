@@ -274,7 +274,7 @@ describe('trucks', () => {
                 })
                 .set("authorization", login.body.token);
             const update = await request(server)
-                .put("/api/trucks/3/location/4")
+                .put("/api/trucks/3/location/3")
                 .send({
                     "currentLocationDescription": "Penn Treaty Park",
                     "currentStreetAddress": "1301 N Beach St",
@@ -317,7 +317,7 @@ describe('trucks', () => {
                 location_id: 3,
                 currentLocation: 'Penn Treaty Park',
                 currentDepartureTime: '2020-05-30T23:00:00.000Z',
-                nextLocationDescription: 'Penn Treaty Park',
+                nextLocationDescription: 'Clarke Park',
                 nextArrivalTime: '2020-05-31T17:00:00.000Z',
                 nextDepartureTime: '2020-05-31T23:00:00.000Z'
             })
