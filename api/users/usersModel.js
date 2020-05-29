@@ -21,12 +21,15 @@ function find() {
         .leftJoin("trucks as t", "u.id", "t.user_id")
         // .fullOuterJoin("diner_trucks as dt", "dp.id", "dt.profile_id")
         .select("u.id as user_id", "u.username", "u.email", "u.operator", "t.truckName", "u.diner", "dp.firstName", "dp.lastName", "dp.profileImageUrl", "dp.currentStreetAddress", "dp.currentCity", "dp.currentState", "dp.currentZipCode", "dp.radSize", "dp.bio")
+        .orderBy("u.id")
 }
 function findDiners() {
     return db("users as u")
         .fullOuterJoin("dinerProfile as dp", "u.id", "dp.user_id")
         .where("u.diner", true)
         .select("u.id as user_id", "u.username", "u.email", "u.operator", "u.diner", "dp.firstName", "dp.lastName", "dp.profileImageUrl", "dp.currentStreetAddress", "dp.currentCity", "dp.currentState", "dp.currentZipCode", "dp.radSize", "dp.bio")
+        .orderBy("u.id")
+
 }
 function findOperators() {
     return db("users as u")
@@ -34,6 +37,8 @@ function findOperators() {
         .fullOuterJoin("trucks as t", "u.id", "t.user_id")
         .where("u.operator", true)
         .select("u.id as user_id", "u.username", "u.email", "u.operator", "t.truckName")
+        .orderBy("u.id")
+
 }
 
 

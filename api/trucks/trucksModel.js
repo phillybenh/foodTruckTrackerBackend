@@ -13,18 +13,23 @@ module.exports = {
     updateMenu,
     remove,
     removeMenuItem,
-    insertLocation
+    insertLocation,
+    updateLocation
 }
 
 function find() {
     return db("trucks as t")
         .select("t.id as truck_id", "t.user_id as operator_id", "t.truckName", "t.imageOfTruck", "t.cuisineType", "t.customerRatingAvg")
+        .orderBy("t.id")
+
 }
 
 function findQuery(query) {
     return db("trucks as t")
         .select("t.id as truck_id", "t.user_id as operator_id", "t.truckName", "t.imageOfTruck", "t.cuisineType", "t.customerRatingAvg")
         .where(query)
+        .orderBy("t.id")
+
 }
 
 function findBy(filter) {
@@ -37,7 +42,7 @@ function findBy(filter) {
 function findById(id) {
     return db("trucks as t")
         .leftJoin("location as l", "t.id", "l.truck_id")
-        .select("t.id as truck_id", "t.user_id as operator_id", "t.truckName", "t.imageOfTruck", "t.cuisineType", "t.customerRatingAvg", "l.currentLocationDescription as currentLocation", "l.nextLocationDescription")
+        .select("t.id as truck_id", "t.user_id as operator_id", "t.truckName", "t.imageOfTruck", "t.cuisineType", "t.customerRatingAvg", "l.id as location_id", "l.currentLocationDescription as currentLocation", "l.currentDepartureTime", "l.nextLocationDescription", "l.nextArrivalTime", "l.nextDepartureTime")
         .where("t.id", id)
         .first();
 }
@@ -123,3 +128,12 @@ function insertLocation(location, truck_id) {
         .insert(location, 'id')
         .then(([id]) => findById(truck_id));
 }
+
+function updateLocation(changes,  truck_id, location_id) {
+    return db("location")
+        .where({ id: location_id })
+        .update(changes)
+        .then(res => {
+            return findById(truck_id);
+        });
+};
