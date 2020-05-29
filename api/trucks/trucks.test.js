@@ -229,4 +229,98 @@ describe('trucks', () => {
             })
         })
     })
+    describe('Location', () => {
+        it('can POST PUT a location for a truck', async () => {
+            const register = await request(server)
+                .post('/api/register')
+                .send({
+                    username: "testUser2",
+                    password: "pwd123",
+                    email: "email@string.com",
+                    operator: true,
+                    diner: false
+                });
+            const login = await request(server)
+                .post("/api/login")
+                .send({
+                    username: "testUser2",
+                    password: "pwd123"
+                });
+            const createTruck = await request(server)
+                .post("/api/trucks")
+                .send({
+                    "user_id": 5,
+                    "truckName": "Truck!",
+                    "imageOfTruck": null,
+                    "cuisineType": "Pizza"
+                })
+                .set("authorization", login.body.token);
+            const create = await request(server)
+                .post("/api/trucks/3/location")
+                .send({
+                    "currentLocationDescription": "Penn Treaty Park",
+                    "currentStreetAddress": "1301 N Beach St",
+                    "currentCity": "Philadelphia",
+                    "currentState": "PA",
+                    "currentZipCode": 19125,
+                    "currentDepartureTime": "2020-05-30 18:00:00 -5:00",
+                    "nextLocationDescription": "Penn Treaty Park",
+                    "nextStreetAddress": "1301 N Beach St",
+                    "nextCity": "Philadelphia",
+                    "nextState": "PA",
+                    "nextZipCode": 19125,
+                    "nextArrivalTime": "2020-05-31 12:00:00 -5:00",
+                    "nextDepartureTime": "2020-05-31 18:00:00 -5:00"
+                })
+                .set("authorization", login.body.token);
+            const update = await request(server)
+                .put("/api/trucks/3/location/4")
+                .send({
+                    "currentLocationDescription": "Penn Treaty Park",
+                    "currentStreetAddress": "1301 N Beach St",
+                    "currentCity": "Philadelphia",
+                    "currentState": "PA",
+                    "currentZipCode": 19125,
+                    "currentDepartureTime": "2020-05-30 18:00:00 -5:00",
+                    "nextLocationDescription": "Clarke Park",
+                    "nextStreetAddress": "4398 Baltimore Ave",
+                    "nextCity": "Philadelphia",
+                    "nextState": "PA",
+                    "nextZipCode": 19104,
+                    "nextArrivalTime": "2020-05-31 12:00:00 -5:00",
+                    "nextDepartureTime": "2020-05-31 18:00:00 -5:00"
+                })
+                .set("authorization", login.body.token);
+            expect(create.status).toBe(200);
+            expect(create.body.data).toMatchObject({
+                truck_id: 3,
+                operator_id: 5,
+                truckName: 'Truck!',
+                imageOfTruck: null,
+                cuisineType: 'Pizza',
+                customerRatingAvg: null,
+                location_id: 3,
+                currentLocation: 'Penn Treaty Park',
+                currentDepartureTime: '2020-05-30T23:00:00.000Z',
+                nextLocationDescription: 'Penn Treaty Park',
+                nextArrivalTime: '2020-05-31T17:00:00.000Z',
+                nextDepartureTime: '2020-05-31T23:00:00.000Z'
+            })
+            expect(update.status).toBe(200);
+            expect(update.body.data).toMatchObject({
+                truck_id: 3,
+                operator_id: 5,
+                truckName: 'Truck!',
+                imageOfTruck: null,
+                cuisineType: 'Pizza',
+                customerRatingAvg: null,
+                location_id: 3,
+                currentLocation: 'Penn Treaty Park',
+                currentDepartureTime: '2020-05-30T23:00:00.000Z',
+                nextLocationDescription: 'Penn Treaty Park',
+                nextArrivalTime: '2020-05-31T17:00:00.000Z',
+                nextDepartureTime: '2020-05-31T23:00:00.000Z'
+            })
+        })
+    })
 })

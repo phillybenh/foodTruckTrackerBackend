@@ -12,6 +12,7 @@ This is the backend for the Food Truck Tracker web application.
 - Web Application Page:
   - Repo: https://github.com/2foodtrucktrackr/frontend
   - Deployed: TBD -->
+
 - Backend:
   - Postman Documentation: https://documenter.getpostman.com/view/11274891/SztD4n16?version=latest
   - Repo: https://github.com/2foodtrucktrackr/backend
@@ -97,14 +98,16 @@ This is the backend for the Food Truck Tracker web application.
 | Get a favorite trucks   | GET    | /api/users/:id/favoriteTrucks | ✅     |
 | Get a owned trucks      | GET    | /api/users/:id/trucksOwned    | ✅     |
 
-| TRUCKS            | Method | URL                           | TESTED |
-| :---------------- | :----- | :---------------------------- | :----- |
-| Add truck         | POST   | /api/trucks                   | ✅     |
-| Get trucks        | GET    | /api/trucks                   | ✅     |
-| Get truck         | GET    | /api/trucks/:id               | ✅     |
-| Edit truck        | PUT    | /api/trucks/:id               | ✅     |
-| Delete trucks     | DELETE | /api/trucks/:id               | ✅     |
-| Add truck menu    | POST   | /api/trucks/:id/menu          | ✅     |
-| Get truck menu    | GET    | /api/trucks/:id/menu          | ✅     |
-| Edit truck menu   | PUT    | /api/trucks/:id/menu/:item_id | ✅     |
-| Delete truck menu | DELETE | /api/trucks/:id/menu/:item_id | ✅     |
+| TRUCKS              | Method | URL                                   | TESTED |
+| :------------------ | :----- | :------------------------------------ | :----- |
+| Add truck           | POST   | /api/trucks                           | ✅     |
+| Get trucks          | GET    | /api/trucks                           | ✅     |
+| Get truck           | GET    | /api/trucks/:id                       | ✅     |
+| Edit truck          | PUT    | /api/trucks/:id                       | ✅     |
+| Delete trucks       | DELETE | /api/trucks/:id                       | ✅     |
+| Add truck menu      | POST   | /api/trucks/:id/menu                  | ✅     |
+| Get truck menu      | GET    | /api/trucks/:id/menu                  | ✅     |
+| Edit truck menu     | PUT    | /api/trucks/:id/menu/:item_id         | ✅     |
+| Delete truck menu   | DELETE | /api/trucks/:id/menu/:item_id         | ✅     |
+| Add truck location  | POST   | /api/trucks/:id/location              | ✅     |
+| Edit truck location | PUT    | /api/trucks/:id/location/:location_id | ✅     |
