@@ -35,8 +35,6 @@ function findQuery(query) {
 function findBy(filter) {
     return db("trucks as t")
         .where(filter)
-    // .select("u.id as user_id", "u.username", "u.password")
-    // .orderBy("u.id");
 }
 
 function findById(id) {
@@ -49,9 +47,7 @@ function findById(id) {
 
 function findMenuById(id) {
     return db("menus as m")
-        // .select("t.id as truck_id", "t.user_id as operator_id", "t.truckName", "t.imageOfTruck", "t.cuisineType", "t.customerRatingAvg")
         .where("m.truck_id", id)
-    // .first();
 }
 
 function findMenuItemById(id) {
@@ -129,7 +125,7 @@ function insertLocation(location, truck_id) {
         .then(([id]) => findById(truck_id));
 }
 
-function updateLocation(changes,  truck_id, location_id) {
+function updateLocation(changes, truck_id, location_id) {
     return db("location")
         .where({ id: location_id })
         .update(changes)

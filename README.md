@@ -1,10 +1,10 @@
 # Food Truck Tracker
 
-### Lambda School Build-week Project
+## Lambda School Build-week Project
 
 This is the backend for the Food Truck Tracker web application.
 
-## The Food Truck Tracker Project:
+## The Food Truck Tracker Project
 
 <!-- - Marketing Page:
   - Repo: https://github.com/2foodtrucktrackr/marketing
@@ -13,10 +13,19 @@ This is the backend for the Food Truck Tracker web application.
   - Repo: https://github.com/2foodtrucktrackr/frontend
   - Deployed: TBD -->
 
+### Pitch
+
+  "Every true "foodie" worth their salt knows that some of the best food in any city can be found on food trucks - but knowing when and where those trucks will be can be next to impossible, and discovering new ones often relies on word-of-mouth that is long on tales of delicious, but short on actual details.
+
+  FoodTruck TrackR was designed to make finding and eating at a food truck fast, easy and fun. Quickly see all of our Operator partners' nearby food trucks that currently open, view their current real-time GPS location, know the scheduled arrival and departure times, view photos, read customer reviews and much more, all in our easy to use app. Try FoodTruck TrackR today, and enjoy the best food YOUR city has to offer."
+
+- Requirements: <https://www.notion.so/FoodTruck-TrackR-7693a673dbe047f2beb489128da25a86>
+- Product Vision Document: <https://docs.google.com/document/d/1Xd1IQxF1YnggtbPlE42lUtCFjzatEmxP9YJe273NV0Y/edit?pli=1>
+
 - Backend:
-  - Postman Documentation: https://documenter.getpostman.com/view/11274891/SztD4n16?version=latest
-  - Repo: https://github.com/2foodtrucktrackr/backend
-  - Base URL: https://foodspy.herokuapp.com/
+  - Postman Documentation: <https://documenter.getpostman.com/view/11274891/SztD4n16?version=latest>
+  - Repo: <https://github.com/phillybenh/foodTruckTrackerBackend>
+  - Base URL: <https://foodspy.herokuapp.com/>
 
 ## Database Schema
 
@@ -24,13 +33,13 @@ This is the backend for the Food Truck Tracker web application.
 
 ## API Information
 
-- To return food trucks of a specific cusine type, use a query string in the URL, example:
+- To return food trucks of a specific cuisine type, use a query string in the URL, example:
 
   - `/api/trucks?cuisineType=soup`
 
 - User registration POST request JSON object example:
 
-  ```
+  ```JSON
   {
     "username": "uniqueUser",
     "password": "passwordString",
@@ -42,7 +51,7 @@ This is the backend for the Food Truck Tracker web application.
 
 - User profile POST request JSON object example:
 
-  ```
+  ```JSON
   {
     "firstName": "First",
     "lastName": "Last",
@@ -58,7 +67,7 @@ This is the backend for the Food Truck Tracker web application.
 
 - Food truck POST request JASON object example:
 
-  ```
+  ```JSON
   {
     "user_id": 10,
     "truckName": "Truck Name String",
@@ -68,21 +77,23 @@ This is the backend for the Food Truck Tracker web application.
   ```
 
 - Menu item POST request JSON object example:
-  ```
+
+  ```JSON
   {
     "itemName": "Item Name String!",
     "itemDescription": "Item description string",
     "itemPhotos": "URL String", // or null
-    "itemPrice": 4.88,	// numer required
-    "customerRatings": [66, 78, 74],	// or null
+    "itemPrice": 4.88, // number required
+    "customerRatings": [66, 78, 74], // or null
     "customerRatingAvg: 72.6667 // or null
   }
   ```
 
 - Location POST request JSON object example (all 'next...' keys are optional):
-  ```
+
+  ```JSON
   {
-	  "currentLocationDescription": "Penn Treaty Park",
+   "currentLocationDescription": "Penn Treaty Park",
     "currentStreetAddress": "1301 N Beach St",
     "currentCity": "Philadelphia",
     "currentState": "PA",
@@ -95,7 +106,7 @@ This is the backend for the Food Truck Tracker web application.
     "nextZipCode": 19104,
     "nextArrivalTime": "2020-05-31 12:00:00 -5:00",
     "nextDepartureTime": "2020-05-31 18:00:00 -5:00"
-}
+  }
   ```
 
 ### Endpoints

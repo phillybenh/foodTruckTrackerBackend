@@ -205,5 +205,3 @@ describe('users', () => {
         })
     })
 })
-// console.log("status", res.status)
-// console.log("body", res.body)

@@ -12,7 +12,6 @@ function find() {
 }
 
 function findBy(filter) {
-    // console.log("filter", filter);
     return db("users as u")
         .where(filter)
         .select("u.id", "u.username", "u.password")
@@ -22,7 +21,6 @@ function findBy(filter) {
 async function add(user) {
     try {
         const [id] = await db("users").insert(user, "id");
-
         return findById(id);
     } catch (error) {
         throw error;

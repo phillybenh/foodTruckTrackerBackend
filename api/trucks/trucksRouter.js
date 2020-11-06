@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const Trucks = require('./trucksModel');
-const { isUnique, isValidTruck, isValidUser, isValidMenuItem, isValidLocation} = require("./trucksServices");
+const { isUnique, isValidTruck, isValidUser, isValidMenuItem, isValidLocation } = require("./trucksServices");
 
 
 // Add truck	POST / api / trucks
@@ -43,8 +43,6 @@ router.get("/", (req, res) => {
             });
     }
 });
-
-// Query trucks	GET-- TO DO--
 
 // Get truck	GET / api / trucks /: id
 router.get("/:id", (req, res) => {
@@ -131,7 +129,6 @@ router.get("/:id/menu", (req, res) => {
 });
 
 // Edit truck menu	PUT / api / trucks /: id / menu	function updateMenu(changes, menu_id, truck_id) {
-
 router.put("/:id/menu/:item_id", isValidUser, isValidMenuItem, (req, res) => {
     const { id, item_id } = req.params;
     const menuItem = req.body;

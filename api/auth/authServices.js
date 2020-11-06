@@ -24,14 +24,10 @@ function isValidReg(req, res, next) {
         res.status(400).json({
             message: "Please provide a valid email address.",
         });
-    } else if ( !reg.operator && !reg.diner) {
+    } else if (!reg.operator && !reg.diner) {
         res.status(400).json({
             message: "Please provide a valid user role.",
         });
-    // } else if (typeof reg.diner !== "boolean") {
-    //     res.status(400).json({
-    //         message: "Please provide a valid diner status.",
-    //     });
     } else {
         next();
     }
@@ -54,14 +50,11 @@ function isValidLogin(req, res, next) {
 
 function isUnique(req, res, next) {
     const query = req.body;
-    // console.log("query", query)
     if (!query.username) {
         next();
     } else {
-        // console.log("query.username", query.username)
         Users.findBy({ username: query.username })
             .then(user => {
-                // console.log("user", user)
                 if (user.length === 0) {
                     next();
                 } else {
@@ -69,7 +62,6 @@ function isUnique(req, res, next) {
                 }
             })
             .catch(error => {
-                // console.log(error)
                 res.status(500).json({ message: error.message })
             });
     }

@@ -12,14 +12,11 @@ module.exports = {
 
 function isUnique(req, res, next) {
     const query = req.body;
-    // console.log("query", query)
     if (!query.truckName) {
         next();
     } else {
-        // console.log("query.username", query.username)
         Trucks.findBy({ truckName: query.truckName })
             .then(truck => {
-                // console.log("user", user)
                 if (truck.length === 0) {
                     next();
                 } else {
@@ -35,7 +32,6 @@ function isUnique(req, res, next) {
 
 function isValidTruck(req, res, next) {
     const truck = req.body;
-    // const user_id = req.params.id;
     const token = req.headers.authorization;
     var decoded = jwt.decode(token);
 
